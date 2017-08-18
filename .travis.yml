@@ -1,0 +1,26 @@
+language: php
+
+sudo: false
+
+php:
+    - 5.6
+    - 7.0
+
+cache:
+  directories:
+    - $HOME/.composer/cache    
+
+install:
+    - composer self-update -q
+    - if [ -n "$GITHUB_OAUTH_TOKEN" ]; then composer config github-oauth.github.com ${GITHUB_OAUTH_TOKEN}; fi;
+    - echo "{\"http-basic\":{\"repo.magento.com\":{\"username\":\"${MAGENTO_USERNAME}\",\"password\":\"${MAGENTO_PASSWORD}\"}}}" > auth.json
+    - composer install --prefer-dist
+    - npm install
+
+script:
+    - php vendor/bin/phpcs --standard=PSR2 --exclude=Generic.Files.LineLength Adapter/ Block/ Helper/ Model/ Test/
+    - php vendor/bin/phpmd Adapter/,Block/,Helper/,Model/,Test/ text cleancode,codesize,controversial,design,naming,unusedcode
+    - php vendor/bin/phpcpd Adapter/ Block/ Helper/ Model/ Test/
+
+after_script:
+    - ./node_modules/.bin/grunt c

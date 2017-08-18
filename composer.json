@@ -1,0 +1,50 @@
+{
+  "name": "unet/dev-tool",
+  "description": "Magento 2 Dev Tool",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Duc Dao",
+      "email": "huuduc.uneti@gmail.com",
+      "homepage": "https://newbie-dev.net"
+    }
+  ],
+  "minimum-stability": "alpha",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.magento.com/"
+    }
+  ],
+  "require": {
+    "php": "~5.6.0|~7.0.0",
+    "magento/framework": "~100.0",
+    "magento-ecg/coding-standard": "^3.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "phpmd/phpmd": "^2.3",
+    "squizlabs/php_codesniffer": "^3.0",
+    "sebastian/phpcpd": "^2.0",
+    "satooshi/php-coveralls": "^1.0",
+    "friendsofphp/php-cs-fixer": "^2.2"
+  },
+  "scripts": {
+    "phpunit": "php vendor/bin/phpunit --testdox",
+    "phpcs": "php vendor/bin/phpcs --standard=PSR2 --exclude=Generic.Files.LineLength Adapter/ Block/ Helper/ Model/ Test/",
+    "phpcs-fix": "php vendor/bin/php-cs-fixer fix /path",
+    "phpmd": "php vendor/bin/phpmd Adapter/,Block/,Helper/,Model/,Test/ text cleancode,codesize,controversial,design,naming,unusedcode",
+    "phpcpd": "php vendor/bin/phpcpd Adapter/ Block/ Helper/ Model/ Test/",
+    "magento-ecg": " php vendor/bin/phpcs --standard=./vendor/magento-ecg/coding-standard/EcgM2 /path"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Unet\\DevTool\\": ""
+    }
+  }
+}
