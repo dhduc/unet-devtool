@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Unet. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Unet_DevTool::unet_devtoolindex" title="Devtool" module="Unet_DevTool"  sortOrder="20" dependsOnModule="Unet_DevTool" action="devtool/devtool/index" resource="Unet_DevTool::unet_devtoolindex"/>
+<!--AddMenu-->
+    </menu>
+</config>
